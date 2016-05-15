@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Injecting javascript into JSON</title>
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+</head>
+<body>
+<h1>XSS Attack with JSON on iFrame</h1>
+
+<div>
+  <span id="container"></span>
+</div>
+<script>
+  $(function() {
+    $.getJSON('./getName.json')
+      .then(function(data){
+        $('#container').append('<iframe src="'+data.picture+'">');
+      });
+  });
+
+</script>
+
+
+</body>
+</html>
