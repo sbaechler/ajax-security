@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Injecting javascript into JSON</title>
+  <script src="scripts/vendor.js"></script>
+<body>
+
+<div>
+  <h1>XSS Attack with JSONP on img tag</h1>
+
+  <p>Your profile picture: <span id="picture-container">
+      <img id="profile-picture" alt="Picture">
+    </span>
+  </p>
+</div>
+<script>
+  function callback(data) {
+    console.log(data);
+      $('#profile-picture').remove();
+      $('#picture-container').append('<img src="'+data.picture+'">');
+  }
+  $(function() {
+    $.ajax({
+      url: './getNameP.js?callback=callback',
+      dataType: 'jsonp'
+    })
+  });
+
+</script>
+
+
+</body>
+</head></html>

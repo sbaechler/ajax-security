@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Injecting javascript into JSON</title>
+  <script src="scripts/vendor.js"></script>
+<body>
+
+<div>
+  <h1>XSS Attack with JSONP on iFrame</h1>
+  <div id="container"></div>
+
+</div>
+<script>
+  function callback(data) {
+    console.log(data);
+      $('#container').append('<iframe src="'+data.picture+'">');
+  }
+  $(function() {
+    $.ajax({
+      url: './getNameP.js?callback=callback',
+      dataType: 'jsonp'
+    })
+  });
+
+</script>
+
+
+</body>
+</head></html>
