@@ -7,21 +7,21 @@
   <!-- bower:js -->
   <script src="/bower_components/jquery/dist/jquery.js"></script>
   <!-- endbower -->
-  <!-- endbuild -->
-</head>
+  <!-- endbuild --></head>
 <body>
-<h1>XSS Attack with JSON on iFrame</h1>
 
 <div>
-  <span id="container"></span>
+  <h1>XSS Attack with Javascript-code within JSON</h1>
+
+  <pre id="json-value"></pre>
+
 </div>
 <script>
   $(function() {
-    $.getJSON('./getName.json')
-      .then(function(data){
-        $('#container').append('<iframe src="'+data.picture+'">');
-        console.log(document.cookie);
-      });
+    var json = "['foo'];alert('XSS');//']";
+    $('#json-value').text(json);
+    var parsed = JSON.parse(json);
+    console.log('Parsed JSON: ', parsed);
   });
 
 </script>

