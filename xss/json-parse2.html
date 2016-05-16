@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Injecting javascript into JSON</title>
+  <script src="../scripts/vendor.js"></script>
+<body>
+
+<div>
+  <h1>XSS Attack with Javascript-code within JSON</h1>
+
+  <pre id="json-value"></pre>
+
+</div>
+<script>
+  $(function() {
+    var json = "['foo'];alert('XSS');//']";
+    $('#json-value').text(json);
+    var parsed = JSON.parse(json);
+    console.log('Parsed JSON: ', parsed);
+  });
+
+</script>
+
+
+</body>
+</head></html>

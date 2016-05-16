@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Injecting javascript into JSON</title>
+</head>
+<body>
+
+<div>
+  <h1>XSS Attack with Javascript-code within JSON</h1>
+
+  <pre id="json-value"></pre>
+
+</div>
+<script>
+    var container = document.getElementById('json-value');
+
+    if(self.fetch) {
+      fetch('./attack.json')
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data) {
+          console.log(data);
+        })
+        .catch(function(error){
+          console.error(error);
+        });
+    } else {
+      alert('This Browser does not yet support the Fetch API.');
+    }
+
+
+    // console.log('Parsed JSON: ', parsed);
+
+</script>
+
+
+</body>
+</html>

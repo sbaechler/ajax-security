@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <title>Injecting javascript into JSON</title>
   <script src="../scripts/vendor.js"></script>
-</head>
 <body>
-<h1>XSS Attack with JSON on iFrame</h1>
 
 <div>
-  <span id="container"></span>
+  <h1>XSS Attack with Javascript-code within JSON</h1>
+
+  <pre id="json-value"></pre>
+
 </div>
 <script>
   $(function() {
-    $.getJSON('./getName.json')
+    $.getJSON('./attack.json')
       .then(function(data){
-        $('#container').append('<iframe src="'+data.picture+'">');
-        console.log(document.cookie);
+        $('#json-value').text(data);
       });
   });
 
@@ -24,4 +24,4 @@
 
 
 </body>
-</html>
+</head></html>

