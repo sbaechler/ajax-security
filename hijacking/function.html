@@ -9,7 +9,7 @@
 <p>As described in the book "Ajax Security".</p>
 
 <script>
-  function Array() {
+  window.Array = function() {
     var self = this;
     var log = function () {
       console.log("Captured Array: ", self);
@@ -18,7 +18,7 @@
   }
 </script>
 
-<script type="text/javascript" src="./data.json"></script>
+<script src="./data.json"></script>
 
 </body>
 </html>
