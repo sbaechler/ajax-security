@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CORS</title>
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="/styles/main.css">
+  <!-- endbuild -->
+  <!-- build:js ../scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="/bower_components/jquery/dist/jquery.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+</head>
+<body>
+<h1>Universally Accessible Cross Origin Request</h1>
+<h2>With CORS, Ajax requests can be made across domains</h2>
+<div id="content" class="well">
+  Loaded content goes here.
+</div>
+
+<script>
+  $(function() {
+    $.ajax({
+      url: '//www.andlabs.net/html5/uCOR.php',
+      success: function(response) {
+        $('#content').text(response);
+        setTimeout(function() {
+          $('#content').append('<br> Content from the external resource can be modified.')
+        }, 1000);
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

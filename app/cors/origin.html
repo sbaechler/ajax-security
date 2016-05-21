@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CORS</title>
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="/styles/main.css">
+  <!-- endbuild -->
+  <!-- build:js ../scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="/bower_components/jquery/dist/jquery.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+</head>
+<body>
+<h1>Access Control based on Origin Header</h1>
+<p>The Origin header can be changed by the user.</p>
+<p>
+  <button onclick="req1()">Normal request</button>
+  <button onclick="req2()">Try spoofing request header</button>
+</p>
+
+<div id="content" class="well">
+  Loaded content goes here.
+</div>
+
+<p>Try this in your terminal:<br>
+<pre>curl -H "Origin: http://www.andlabs.org" www.andlabs.net/html5/acCOR.php</pre>
+</p>
+
+<script>
+  var req1, req2;
+  $(function() {
+    req1 = function() {
+      $.ajax({
+        url: '//www.andlabs.net/html5/acCOR.php',
+        error: function(xhr, status, response) {
+          console.log(arguments);
+          $('#content').text(status);
+        }
+      });
+    };
+
+    req2 = function() {
+      $.ajax({
+        url: '//www.andlabs.net/html5/acCOR.php',
+        headers: {
+          Origin: 'http://www.andlabs.org'
+        },
+        success: function(xhr, status, response) {
+          console.log(arguments);
+          $('#content').text(status);
+        },
+        error: function(xhr, status, response) {
+          console.log(arguments);
+          $('#content').text(status);
+        }
+      });
+    };
+  });
+</script>
+
+
+</body>
+</html>

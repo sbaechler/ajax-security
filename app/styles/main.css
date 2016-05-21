@@ -3,3 +3,8 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333;
 }
+.well {
+  background: #f6f6f6;
+  padding: 1rem;
+  box-shadow: #ccc 1px 1px 6px 0 inset;
+}
