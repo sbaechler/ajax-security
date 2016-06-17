@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSONP attack</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="../scripts/vendor.js"></script>
+</head>
+<body>
+<h1>JSONP: Load JSON across domains</h1>
+<p></p>
+<p>
+  <button onclick="req1()">Normal request</button>
+  <button onclick="req2()">Not actual JSON</button>
+  <button onclick="req3()">Not actual JSON</button>
+</p>
+
+<div id="content" class="well">
+  Loaded content goes here.
+</div>
+
+<script>
+  var req1, req2;
+  function onLoaded (data) {
+    $('#content').html(JSON.stringify(data));
+  }
+
+  $(function() {
+    req1 = function() {
+      $.ajax({
+        url: './data1.js',
+        crossDomain: true,
+        dataType: 'jsonp',
+        jsonpCallback: 'onLoaded',
+        success: function(data) {
+          console.log('Request 1', data);
+        }
+      });
+    };
+
+    req2 = function() {
+      $.ajax({
+        url: './data2.js',
+        crossDomain: true,
+        dataType: 'jsonp',
+        jsonpCallback: 'onLoaded',
+        success: function(data) {
+          console.log('Request 2', data);
+        }
+      });
+    };
+
+    req3 = function() {
+      $.ajax({
+        url: './data3.js',
+        crossDomain: true,
+        dataType: 'jsonp',
+        jsonpCallback: 'onLoaded',
+        success: function(data) {
+          console.log('Request 2', data);
+        }
+      });
+    };
+  });
+</script>
+</body>
+</html>

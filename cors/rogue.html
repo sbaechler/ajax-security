@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CORS</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="../scripts/vendor.js"></script>
+</head>
+<body>
+<h1>Rogue Cross Origin Requests</h1>
+<p>Even if the CORS is not valid, the request is still processed by the server.</p>
+<div id="content" class="well">
+  Loaded content goes here.
+</div>
+
+<script>
+  $(function() {
+    $.ajax({
+      url: '//www.andlabs.net/html5/processCOR.php',
+      error: function(xhr, status, response) {
+        console.log(arguments);
+        $('#content').text(status);
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>
