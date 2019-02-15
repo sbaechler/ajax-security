@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Link Hijacking</title>
+
+  <style type="text/css">
+    textarea {
+      min-width: 500px;
+      margin-top: 2em;
+    }
+  </style>
+
+</head>
+<body>
+<h1>Hi there</h1>
+
+<form onsubmit="return false">
+  <label for="text">Please enter some text into this field and go back to the other tab. (Only works on the same origin)</label>
+
+  <div>
+    <textarea id="text"></textarea>
+  </div>
+
+  <p><button onclick="window.close()">Close window</button></p>
+</form>
+
+<script>
+  document.getElementById('text').onchange = e => {
+    console.log(e.target.value);
+
+    if (window.opener) {
+      console.log('got window.opener');
+      var doc = window.opener.document;
+      var el = doc.getElementById('message');
+      el.innerText = e.target.value;
+    }
+  };
+</script>
+
+</body>
+</html>

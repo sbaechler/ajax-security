@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Link Hijacking</title>
+
+  <style type="text/css">
+    #message:not(:empty) {
+      border: 2px solid red;
+      padding: 1em;
+    }
+  </style>
+</head>
+<body>
+<h1>Hello</h1>
+
+<p>
+  <a href="./links2.html" target="_blank">Open this page...</a>
+</p>
+
+<p id="message"></p>
+
+<p><a href="https://github.com/whatwg/html/issues/4078">Issue on WhatWG tracker</a></p>
+<p>This has been fixed in Firefox and Safari. <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=927340">Chrome issue is here</a>.</p>
+</body>
+</html>
